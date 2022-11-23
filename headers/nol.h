@@ -152,6 +152,21 @@ scss *design(const char *element, const char *style);
 
 nol *ji(void);
 
+/**
+ *
+ * @brief add an input to the form
+ *
+ * @param type          The input type
+ * @param name          The input name
+ * @param classes       The input class 
+ * @param id            The input identifier
+ * @param placeholder   The input text
+ * @param event         The input event
+ * @param callback      The input callback
+ *
+ * @return form*
+ *
+ **/
 form *add(const char *type,const char *name,const char *classes,const char *id,const char *placeholder,const char *event,const char *callback);
 
 /**
