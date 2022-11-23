@@ -54,6 +54,7 @@ struct db
 {
     const char *name;
     const char *table;
+    const char *user;
     char *sql;
     char *error;
 };
@@ -62,12 +63,15 @@ typedef struct js js;
 struct js
 {
     const char *filename;
+    const char *directory;
 };
 
 typedef struct form form;
 struct form
 {
     method m;
+    char *data;
+    form *(*add)(const char *type,const char *name,const char *classes,const char *id,const char *placeholder,const char *event,const char *callback);
 };
 
 typedef struct nol nol;
@@ -147,6 +151,8 @@ bool ok(void);
 scss *design(const char *element, const char *style);
 
 nol *ji(void);
+
+form *add(const char *type,const char *name,const char *classes,const char *id,const char *placeholder,const char *event,const char *callback);
 
 /**
  *

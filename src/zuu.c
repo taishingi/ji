@@ -8,7 +8,6 @@
  * @copyright Copyright (c) 2022
  *
  */
-
 #include "../headers/zuu.h"
 
 bool has(const char *argv, const char *expected)
