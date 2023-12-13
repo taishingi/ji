@@ -4,6 +4,8 @@
 dub add ji
 ```
 
+![ji-output](https://raw.githubusercontent.com/taishingi/ji/master/ji.gif)
+
 ## How to use
 
 ```d
