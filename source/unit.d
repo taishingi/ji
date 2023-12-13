@@ -68,7 +68,7 @@ public:
 
 	Unit is_valid_file(const(char)[] f)
 	{
-		return this.run(isValidFilename(f),"The filename is valid","The filenameis invalid");
+		return this.run(isValidFilename(f), "The filename is valid", "The filenameis invalid");
 
 	}
 
@@ -77,6 +77,20 @@ public:
 		cwritefln("\n%s".color(fg.magenta), description);
 		writeln();
 		return it(this);
+	}
+
+	Unit theory(const(char)[] description, bool expected, bool delegate() it)
+	{
+		cwritefln("\n%s".color(fg.magenta), description);
+		writeln();
+		return this.run(expected == it(), "The theory is true", "The theory is false");
+	}
+
+	Unit chaos(const(char)[] description, bool delegate() it)
+	{
+		cwritefln("\n%s".color(fg.magenta), description);
+		writeln();
+		return this.run(!it(), "The theory is false", "The theory is true");
 	}
 
 	void end()
@@ -93,10 +107,21 @@ public:
 unittest
 {
 
+	bool ok()
+	{
+		return 40 + 2 == 42;
+	}
+
+	bool ko()
+	{
+		return 40 == 42;
+	}
+
 	Unit all(Unit u)
 	{
 		return u.ok(true).ko(false).directory_exists("/").is_absolute("/dev")
-			.is_rooted("/dev").is_valid_path(".").is_valid_file("dub.json");
+			.is_rooted("/dev").is_valid_path(".").is_valid_file("dub.json")
+			.theory("Must be equal to 42", true, &ok).chaos("Must match false", &ko);
 	}
 
 	Unit u = new Unit;
