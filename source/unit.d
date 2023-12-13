@@ -74,7 +74,7 @@ public:
 
 	Unit describe(const(char)[] description, Unit delegate(Unit) it)
 	{
-		cwritefln("%s".color(fg.magenta), description);
+		cwritefln("\n%s".color(fg.magenta), description);
 		writeln();
 		return it(this);
 	}
