@@ -10,9 +10,9 @@
 	"targetType": "staticLibrary",
 	"description": "A testing framework",
 	"license": "GPL-3.0",
-	"sourcePaths": ["source"],
+	"sourcePaths": ["ji"],
 	"importPaths": [
-		"source"
+		"ji"
 	],
 	"name": "ji"
 }
