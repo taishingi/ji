@@ -1,0 +1,18 @@
+{
+	"authors": [
+		"Willy Micieli <micieli@vivaldi.net>"
+	],
+	"homepage": "https://github.com/taishingi/ji",
+	"copyright": "Copyright © 2023, Willy Micieli",
+	"dependencies": {
+		"colorize": "~>1.0.5"
+	},
+	"targetType": "staticLibrary",
+	"description": "A testing framework",
+	"license": "GPL-3.0",
+	"sourcePaths": ["source"],
+	"importPaths": [
+		"source"
+	],
+	"name": "ji"
+}
