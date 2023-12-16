@@ -13,3 +13,5 @@ docs/
 *.obj
 *.lst
 *.a
+.icon/
+continuous/

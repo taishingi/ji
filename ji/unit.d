@@ -1,9 +1,11 @@
 module ji.unit;
 import std.stdio;
 import std.file;
-
+import std.string;
+import std.algorithm;
 import std.path;
 import colorize;
+import std.system;
 
 class Unit
 {
@@ -54,6 +56,50 @@ public:
 	Unit ko(bool delegate() t)
 	{
 		return this.run(!t(), "The test match false", "The test match true");
+	}
+
+	/// Check if ther source contains needle
+	/// Params:
+	///   source = The source to check
+	///   needle = The value to find
+	/// Returns: Unit
+	Unit contains(string source, string needle)
+	{
+		return this.run(!find(source, needle).empty, "The value has been founded", "The value has not been fouded");
+	}
+
+	/// Check if the string finnish by the expected value
+	/// Params:
+	///   source = The value to check
+	///   expected = The end expected value
+	/// Returns: 
+	Unit finnish(const(char)[] source, const(char)[] expected)
+	{
+		return this.run(
+			endsWith(source, expected),
+			"The string finnish by the expected value", "The end no match expected value");
+	}
+
+	/// CHeck if a string statrt by the expected value
+	/// Params:
+	///   source = The value to check
+	///   expected = Teh begin expected value
+	/// Returns: 
+	Unit begin(const(char)[] source, const(char)[] expected)
+	{
+		return this.run(
+			startsWith(source, expected),
+			"The string begin with the expected value", "The begin no match expected value");
+	}
+
+	/// CHeck if ther source contains needle
+	/// Params:
+	///   source = The source to check
+	///   needle = The value to find
+	/// Returns: Unit
+	Unit no_contains(string source, string needle)
+	{
+		return this.run(find(source, needle).empty, "The value has been founded", "The value has not been fouded");
 	}
 
 	/// Check if the file exist
@@ -175,9 +221,13 @@ unittest
 
 	Unit all(Unit u)
 	{
-		return u.ok(&ok).ko(&ko).directory_exists("/").is_absolute("/dev")
+		return u.ok(&ok).ko(&ko).directory_exists("/")
+			.is_absolute("/dev")
 			.is_rooted("/dev").is_valid_path(".").is_valid_file("dub.json")
-			.theory("Must be equal to 42", true, &ok).chaos("Must match false", &ko);
+			.theory("Must be equal to 42", true, &ok)
+			.chaos("Must match false", &ko).contains("I love linux", "linux")
+			.no_contains("i love linux", "windows").finnish("i love linux", "linux").begin(
+				"linux is better than windows", "linux");
 	}
 
 	Unit u = new Unit;
