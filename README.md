@@ -26,15 +26,13 @@ unittest
 
  Unit all(Unit u)
  {
-  return u.ok(&ok)
-          .ko(&ko)
-          .directory_exists("/")
-          .is_absolute("/dev")
-          .is_rooted("/dev")
-          .is_valid_path(".")
-          .is_valid_file("dub.json")
-          .theory("Must be equal to 42", true, &ok)
-          .chaos("Must match false", &ko);
+   return u.ok(&ok).ko(&ko).directory_exists("/")
+   .is_absolute("/dev")
+   .is_rooted("/dev").is_valid_path(".").is_valid_file("dub.json")
+   .theory("Must be equal to 42", true, &ok)
+   .chaos("Must match false", &ko).contains("I love linux", "linux")
+   .no_contains("i love linux", "windows").finnish("i love linux", "linux").begin(
+    "linux is better than windows", "linux");
  }
 
  Unit u = new Unit;
