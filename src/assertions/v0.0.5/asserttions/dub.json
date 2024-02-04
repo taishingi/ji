@@ -6,7 +6,8 @@
 	"dependencies": {
 		"colorize": "~>1.0.5"
 	},
+	"targetType": "staticLibrary",
 	"description": "A minimal D application.",
 	"license": "GPL-3.0-or-later",
-	"name": "ji"
+	"name": "assertions"
 }

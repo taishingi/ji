@@ -7,6 +7,7 @@ import std.path;
 import colorize;
 import std.system;
 
+/// A class to run unit test
 class Unit
 {
 
@@ -80,7 +81,7 @@ public:
 			"The string finnish by the expected value", "The end no match expected value");
 	}
 
-	/// CHeck if a string statrt by the expected value
+	/// Check if a string statrt by the expected value
 	/// Params:
 	///   source = The value to check
 	///   expected = Teh begin expected value
@@ -92,7 +93,7 @@ public:
 			"The string begin with the expected value", "The begin no match expected value");
 	}
 
-	/// CHeck if ther source contains needle
+	/// Check if ther source contains needle
 	/// Params:
 	///   source = The source to check
 	///   needle = The value to find
@@ -205,7 +206,6 @@ public:
 		return this.failures > 0 ? 1 : 0;
 	}
 }
-
 unittest
 {
 
@@ -230,7 +230,7 @@ unittest
 				"linux is better than windows", "linux");
 	}
 
-	Unit u = new Unit;
-	int x = u.describe("All test should be pass", &all).end();
+	Unit u = new Unit();
+	const int x = u.describe("All test should be pass", &all).end();
 	assert(x == 0);
 }
